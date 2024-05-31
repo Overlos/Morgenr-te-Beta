@@ -1,8 +1,8 @@
 {
-  "name" : "Morgenroete",
+  "name" : "Morgenroete BETA",
   "id" : "",
-  "version" : "2.1.4c 'Kafka'",
-  "supported_game_version" : "1.6.2",
+  "version" : "2.1.4 'Kafka'",
+  "supported_game_version" : "1.*.*",
   "short_description" : "",
   "tags" : [],
   "relationships" : [],

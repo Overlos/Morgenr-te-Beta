@@ -2,7 +2,7 @@
 
 main_theme_track = {
 	music = "file:/music/morgenroete_theme.ogg"
-	can_be_interrupted = yes
+	can_be_interrupted = no
 
 	#Note:
 	#Lyrics: Cecil Spring Rice. Composer: Gustav Holst. Arranged by: Geoff Knorr. License: CC4.0. https://creativecommons.org/licenses/by-sa/4.0/deed.en
