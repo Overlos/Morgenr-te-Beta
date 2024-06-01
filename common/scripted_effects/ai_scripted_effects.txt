@@ -209,21 +209,12 @@ ai_arctica_expedition_effect = {
 			}
 			any_scope_building = {
 				is_building_type = building_verrier_observatory
-				has_active_production_method = pm_curtiss_weather_station
+				OR = {
+					has_active_production_method = pm_curtiss_weather_station
+					has_active_production_method = pm_curtiss_modern_weather_station
+				}
 			}
 			curtiss_has_active_pilot_no_tooltip_trigger = yes
-			OR = {
-				any_scope_state = {
-					mr_arctic_states_trigger = yes
-				}
-				any_country = {
-					has_diplomatic_pact = {
-						who = ROOT
-						type = airspace_convention
-					}				
-					mr_arctic_states_trigger = yes
-				}
-			}
 		}
 
 		#Effect
@@ -2018,7 +2009,8 @@ ai_writer_effects = {
 					}
 				}
 				any_country = {
-					NOT = {
+					NOR = {
+						has_variable = manzoni_visit_by_universal_writer_var
 						is_country_type = decentralized
 					}
 					manzoni_writer_meets_foreign_taste_trigger = yes

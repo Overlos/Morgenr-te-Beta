@@ -83,7 +83,10 @@ mr_arctica_expedition_button = {
 			text = MR_ZEPPELIN_OBSERVATORY_TRIGGER_TT
 			any_scope_building = {
 				is_building_type = building_verrier_observatory
-				has_active_production_method = pm_curtiss_weather_station
+				OR = {
+					has_active_production_method = pm_curtiss_weather_station
+					has_active_production_method = pm_curtiss_modern_weather_station
+				}
 			}
 		}
 		custom_tooltip = {
@@ -91,81 +94,6 @@ mr_arctica_expedition_button = {
 			has_variable = curtiss_pilot_var
 			var:curtiss_pilot_var ?= {
 				is_busy = no
-			}
-		}
-		custom_tooltip = {
-			text = MR_ZEPPELIN_ACCESS_TRIGGER_TT
-			OR = {
-				OR = {
-					any_scope_state = {
-						state_region = s:STATE_GREENLAND
-					}
-					any_country = {
-						has_diplomatic_pact = {
-							who = ROOT
-							type = airspace_convention
-						}				
-						any_scope_state = {
-							state_region = s:STATE_GREENLAND
-						}
-					}		
-				}
-				OR = {
-					any_scope_state = {
-						state_region = s:STATE_NORTHERN_NORWAY
-					}
-					any_country = {
-						has_diplomatic_pact = {
-							who = ROOT
-							type = airspace_convention
-						}				
-						any_scope_state = {
-							state_region = s:STATE_NORTHERN_NORWAY
-						}
-					}		
-				}
-				OR = {
-					any_scope_state = {
-						state_region = s:STATE_ALASKA
-					}
-					any_country = {
-						has_diplomatic_pact = {
-							who = ROOT
-							type = airspace_convention
-						}				
-						any_scope_state = {
-							state_region = s:STATE_ALASKA
-						}
-					}		
-				}
-				OR = {
-					any_scope_state = {
-					state_region = s:STATE_NUNAVUT
-					}
-					any_country = {
-						has_diplomatic_pact = {
-							who = ROOT
-							type = airspace_convention
-						}				
-						any_scope_state = {
-							state_region = s:STATE_NUNAVUT
-						}
-					}		
-				}
-				OR = {
-					any_scope_state = {
-						state_region = s:STATE_NENETSIA
-					}
-					any_country = {
-						has_diplomatic_pact = {
-							who = ROOT
-							type = airspace_convention
-						}				
-						any_scope_state = {
-							state_region = s:STATE_NENETSIA
-						}
-					}		
-				}
 			}
 		}
 		custom_tooltip = {
