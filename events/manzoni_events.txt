@@ -67,10 +67,6 @@ namespace = manzoni
 # Manzoni 610: Plunder the Library
 # Manzoni 611: National Library plundered
 
-### Writer Interactions ###
-#Manzoni 801: Beautiful Illustrations
-#Manzoni 802: Theories about Extraterrestrial Life
-
 ### Italian Nationalism ###
 #Manzoni 901: The Fate of Lucca (for Parma)
 #Manzoni 902: The Fate of Lucca (for Tuscany)
@@ -98,7 +94,6 @@ namespace = manzoni
 # Manzoni 1000: Sherlock Holmes published
 # Manzoni 1001: The Hobbit or There and Back Again
 # Manzoni 1002: War of the Worlds
-# Manzoni 1003: Treasure Island (Robert Louis Stevenson)
 
 ### Switzerland ###
 #Manzoni 1100: Heidi (Johanna Spyri)
@@ -127,7 +122,6 @@ namespace = manzoni
 #Manzoni 1304: Heinrich Heine, Weberlied
 #Manzoni 1305: Gerhart Hauptmann, Die Weber
 #Manzoni 1306: Berlin Alexanderplatz (Alfred Döblin)
-#Manzoni 1307: Buddenbrooks (Thomas Mann)
 
 ### France ###
 #Manzoni 1400: Le Tour du monde en quatre-vingts jours
@@ -155,12 +149,6 @@ namespace = manzoni
 
 ### Netherlands ###
 #Manzoni 2000: Max Havelaar
-
-### Dai Nam ###
-#Manzoni 2100: Tang Thương Ngẫu Lục
-
-### Russia ###
-#Manzoni 2200: A duel for Honor (Pushkin death (?) event)
 
 ###################
 
@@ -1809,17 +1797,6 @@ manzoni.332 = {
 			has_law = law_type:law_monarchy
 		}
 		manzoni_add_x_literary_tradition_unscaled_effect = { AMOUNT = 5 }
-		hidden_effect = {
-			if = {
-				limit = { has_modifier = manzoni_foreign_writer_monarch_modifier }
-				while = {
-					limit = {
-						has_modifier = manzoni_foreign_writer_monarch_modifier
-					}
-					remove_modifier = manzoni_foreign_writer_monarch_modifier
-				}
-			}
-		}
 		add_modifier = {
 			name = manzoni_foreign_writer_monarch_modifier
 			years = 3
@@ -3140,153 +3117,6 @@ manzoni.611 = {
 	option = { #They did WHAT?!
 		name = manzoni.611.g
 		default_option = yes
-	}
-
-	after = {
-	}
-}
-
-################################################################################
-
-#Manzoni 801: Beautiful Illustrations
-manzoni.801 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-
-	title = manzoni.801.t
-	desc = manzoni.801.d
-	flavor = manzoni.801.f
-
-	gui_window = event_window_2char
-
-	left_icon = scope:manzoni_writer_scope
-	right_icon = scope:klimt_painter_scope
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	cooldown = {
-		years = { 7 12 }
-	}
-
-	trigger = {
-		manzoni_has_writer_no_tooltip = yes
-		klimt_has_painter_no_tooltip = yes
-	}
-
-	immediate = {
-		var:manzoni_writer_var = {
-			save_scope_as = manzoni_writer_scope
-		}
-		var:klimt_painter_var = {
-			save_scope_as = klimt_painter_scope
-		}
-	}
-
-	option = { #The details are incredible!
-		name = manzoni.801.g
-		default_option = yes
-
-		manzoni_add_x_literary_tradition_unscaled_effect = { AMOUNT = 5 }
-		klimt_add_x_painting_tradition_unscaled_effect = { AMOUNT = 5 }
-		writer_experience_gain_effect = { AMOUNT = 10 }
-		painter_experience_gain_effect = { AMOUNT = 10 }
-	}
-
-	option = { #This will become a bestseller!
-		name = manzoni.801.h
-		trigger = {
-			var:manzoni_writer_var = {
-				has_trait = manzoni_writer_fiction
-			}
-		}
-
-		var:manzoni_writer_var = {
-			add_modifier = {
-				name = manzoni_beautiful_illustrations_modfier
-				years = 4
-			}
-		}
-		custom_tooltip = manzoni.801.h_tt
-		writer_experience_gain_effect = { AMOUNT = 10 }
-		painter_experience_gain_effect = { AMOUNT = 10 }
-	}
-
-	after = {
-	}
-}
-
-#Manzoni 802: Theories about Extraterrestrial Life
-manzoni.802 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-
-	title = manzoni.802.t
-	desc = manzoni.802.d
-	flavor = manzoni.802.f
-
-	gui_window = event_window_2char
-
-	left_icon = scope:manzoni_writer_scope
-	right_icon = scope:verrier_astronomer_scope
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	cooldown = {
-		years = { 7 12 }
-	}
-
-	trigger = {
-		manzoni_has_writer_no_tooltip = yes
-		var:manzoni_writer_var ?= {
-			has_trait = manzoni_genre_science_fiction
-		}
-		verrier_has_astronomer_no_tooltip_trigger = yes
-	}
-
-	immediate = {
-		var:manzoni_writer_var = {
-			save_scope_as = manzoni_writer_scope
-		}
-		var:verrier_astronomer_var = {
-			save_scope_as = verrier_astronomer_scope
-		}
-	}
-
-	option = { #Maybe we should search for extraterrestials?
-		name = manzoni.802.g
-		default_option = yes
-
-		astronomer_experience_gain_effect = { AMOUNT = 15 }
-		writer_experience_gain_effect = { AMOUNT = 10 }
-	}
-
-	option = { #They should write a book about their theories!
-		name = manzoni.802.h
-		trigger = {
-			var:manzoni_writer_var = {
-				has_trait = manzoni_writer_fiction
-			}
-		}
-
-		var:manzoni_writer_var = {
-			add_modifier = {
-				name = manzoni_alien_theories_modfier
-				years = 4
-			}
-		}
-		custom_tooltip = manzoni.801.h_tt
-	}
-
-	option = { #Fascinating!
-		name = manzoni.802.i
-
-		verrier_medium_add_technology = yes
 	}
 
 	after = {
@@ -5386,42 +5216,6 @@ manzoni.1002 = {
 	}
 }
 
-# Manzoni 1003: Treasure Island (Robert Louis Stevenson)
-manzoni.1003 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-	placement = ROOT
-
-	title = manzoni.1003.t
-	desc = manzoni.1003.d
-	flavor = manzoni.1003.f
-
-	duration = 3
-
-	gui_window = event_window_1char_tabloid
-
-	left_icon = scope:manzoni_writer_scope
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	trigger = {
-	}
-
-	immediate = {
-		manzoni_bestseller_event_immediate_effect = yes
-	}
-
-	option = { #Argh!
-		name = manzoni.1003.g
-		default_option = yes
-
-		manzoni_bestseller_event_option_effect = yes
-	}
-}
-
 ###################
 
 ### Switzerland ###
@@ -6713,44 +6507,8 @@ manzoni.1306 = {
 		manzoni_bestseller_event_immediate_effect = yes
 	}
 
-	option = { #A groundbreaking work of modernism.
-		name = manzoni.1306.g
-		default_option = yes
-
-		manzoni_bestseller_event_option_effect = yes
-	}
-}
-
-#Manzoni 1307: Buddenbrooks (Thomas Mann)
-manzoni.1307 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-	placement = ROOT
-
-	title = manzoni.1307.t
-	desc = manzoni.1307.d
-	flavor = manzoni.1307.f
-
-	duration = 3
-
-	gui_window = event_window_1char_tabloid
-
-	left_icon = scope:manzoni_writer_scope
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	trigger = {
-	}
-
-	immediate = {
-		manzoni_bestseller_event_immediate_effect = yes
-	}
-
 	option = { #TODO: ADD option loc
-		name = manzoni.1307.g
+		name = manzoni.1306.g
 		default_option = yes
 
 		manzoni_bestseller_event_option_effect = yes
@@ -7264,118 +7022,5 @@ manzoni.2000 = {
 		default_option = yes
 
 		manzoni_bestseller_event_option_effect = yes
-	}
-}
-
-### Dai Nam ###
-#Manzoni 2100: Tang Thương Ngẫu Lục
-manzoni.2100 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-	placement = ROOT
-
-	title = manzoni.2100.t
-	desc = manzoni.2100.d
-	flavor = manzoni.2100.f
-
-	event_image = {
-		texture = "gfx/event_pictures/manzoni_pictures/manzoni_tang_thuong.dds"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	duration = 3
-
-	trigger = {
-		NOT = { 
-			has_global_variable = manzoni_tang_thuong_ngau_luc_published_global_var 
-		}
-		c:DAI ?= this
-		year >= 1806
-		has_technology_researched = romanticism
-	}
-
-	immediate = {
-		set_global_variable = manzoni_tang_thuong_ngau_luc_published_global_var
-	}
-
-	option = {
-		name = manzoni.2100.g #Tales of a darker time, we must strive to be better.
-		default_option = yes
-
-		manzoni_add_x_literary_tradition_effect = {
-			AMOUNT = 10
-		}
-	}
-
-	after = {
-	}
-}
-
-### Russia ###
-#Manzoni 2200: A duel for Honor (Pushkin death (?) event)
-manzoni.2200 = {
-	dlc = dlc_morgenrote
-
-	type = country_event
-	placement = ROOT
-
-	title = manzoni.2200.t
-	desc = manzoni.2200.d
-	flavor = manzoni.2200.f
-
-	duration = 3
-
-	gui_window = event_window_1char_tabloid
-
-	left_icon = scope:manzoni_writer_scope
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_literature.dds"
-
-	trigger = {
-		NOT = { has_global_variable = manzoni_pushkin_duel_happened_global_var }
-		game_date > 1836.4.1
-		has_variable = manzoni_writer_var
-		var:manzoni_writer_var = {
-			has_template = mr_rus_pushkin_alexander_character_template
-			is_busy = no
-		}
-	}
-
-	immediate = {
-		var:manzoni_writer_var ?= {
-			save_scope_as = manzoni_writer_scope
-		}
-		set_global_variable = manzoni_pushkin_duel_happened_global_var
-	}
-
-	option = { #I hope he survives!
-		name = manzoni.2200.g
-		default_option = yes
-
-		random_list = {
-			1 = {}
-			9 = {
-				scope:manzoni_writer_scope ?= {
-					kill_character = yes
-				}
-				remove_variable = manzoni_writer_var
-			}
-		}
-	}
-
-	option = { #I hope this troublemaker dies!
-		name = manzoni.2200.g
-		default_option = yes
-
-		scope:manzoni_writer_scope ?= {
-			kill_character = yes
-		}
-		remove_variable = manzoni_writer_var
 	}
 }
